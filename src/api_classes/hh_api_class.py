@@ -6,7 +6,6 @@ class HeadHunterAPI(GeneralAPI):
     _item_key: str = "items"
     _api_url: str = "https://api.hh.ru/vacancies"
     _kw_name: str = "text"
-    _api_key: dict = {}
     _required_headers: dict = {}
 
     def _parse_response_dict(self, response_dict: dict) -> Vacancy:
