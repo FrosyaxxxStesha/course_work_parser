@@ -2,34 +2,35 @@ from requests import get
 from json import loads
 from abc import ABC, abstractmethod
 from accessify import private, protected
+from src.vacancy_class.vacancy_class import Vacancy
 
 
 class GeneralApi(ABC):
-    _item_key: str
-    _api_url: str
-    _kw_name: str
-    _api_key: dict = {}
-    _required_headers: dict = {}
+    __item_key: str
+    __api_url: str
+    __kw_name: str
+    __api_key: dict = {}
+    __required_headers: dict = {}
 
     def __init__(self, **headers) -> None:
-        self.headers = headers | self._required_headers | self._api_key
+        self.__headers = headers | self.__required_headers | self.__api_key
 
-    @private
+    @protected
     def connect_to_api(self, keyword: str | None = None) -> dict:
         params = {}
         if keyword is not None:
-            params = {self._kw_name: keyword}
+            params = {self.__kw_name: keyword}
 
-        with get(url=self._api_url, headers=self.headers, params=params) as response:
+        with get(url=self.__api_url, headers=self.__headers, params=params) as response:
             data = response.content.decode()
 
-        return loads(data)[self._item_key]
+        return loads(data)[self.__item_key]
 
     @staticmethod
-    @protected
+    @private
     @abstractmethod
     def parse_response_dict(response_dict: dict) -> Vacancy:
         pass
 
-    def get_vacancies(self, keyword: str | None = None):
-        return [Vacancy(vac_dict) for vac_dict in self.connect_to_api(keyword)]
+    def get_vacancies(self, keyword: str | None = None) -> list[Vacancy]:
+        return list(map(self.parse_response_dict, self.connect_to_api(keyword)))
