@@ -1,11 +1,11 @@
 from requests import get
 from json import loads
 from abc import ABC, abstractmethod
-from accessify import private, protected
+from accessify import protected
 from src.vacancy_class.vacancy_class import Vacancy
 
 
-class GeneralApi(ABC):
+class GeneralAPI(ABC):
     __item_key: str
     __api_url: str
     __kw_name: str
@@ -27,7 +27,6 @@ class GeneralApi(ABC):
         return loads(data)[self.__item_key]
 
     @staticmethod
-    @private
     @abstractmethod
     def parse_response_dict(response_dict: dict) -> Vacancy:
         pass
