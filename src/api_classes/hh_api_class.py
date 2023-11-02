@@ -5,7 +5,7 @@ from src.vacancy_class.vacancy_class import Vacancy
 
 class HeadHunterAPI(GeneralAPI):
     __item_key: str = "items"
-    __api_url: str = ""
+    __api_url: str = "https://api.hh.ru/vacancies"
     __kw_name: str = "text"
     __api_key: dict = {}
     __required_headers: dict = {}
