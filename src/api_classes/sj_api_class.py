@@ -1,5 +1,5 @@
 from src.api_classes.general_api_class import GeneralAPI
-from src.vacancy_class.vacancy_class import Vacancy
+from src.vacancy_classes.vacancy_class import Vacancy
 
 
 class SuperJobAPI(GeneralAPI):
