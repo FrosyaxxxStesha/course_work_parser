@@ -11,5 +11,9 @@ class Vacancy:
         if not (isinstance(str, responsibility) or responsibility is None):
             raise ValueError("Обязанности должны быть строкой")
 
-
+        self.__title = title
+        self.__url = url
+        self.__salary = salary
+        self.__requirements = requirements
+        self.__responsibility = responsibility
 
