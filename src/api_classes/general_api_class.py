@@ -1,7 +1,7 @@
 from requests import get
 from json import loads
 from abc import ABC, abstractmethod
-from src.vacancy_class.vacancy_class import Vacancy
+from src.vacancy_classes.vacancy_class import Vacancy
 
 
 class GeneralAPI(ABC):
