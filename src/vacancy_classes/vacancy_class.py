@@ -33,6 +33,22 @@ class Vacancy:
     def salary(self):
         return self.__salary
 
+    @property
+    def url(self):
+        return self.__url
+
+    @property
+    def requirements(self):
+        return self.__requirements
+
+    @property
+    def responsibility(self):
+        return self.__responsibility
+
+    @property
+    def title(self):
+        return self.__title
+
     def __eq__(self, other):
         return self.__salary == other.__salary
 
