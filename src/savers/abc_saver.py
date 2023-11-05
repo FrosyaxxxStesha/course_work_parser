@@ -22,10 +22,10 @@ class AbstractSaving(ABC):
     def _operator_from_file(self, file_name, title) -> VacancyOperator:
         if file_name is None:
             return VacancyOperator(title)
-        return self.parse_operator(file_name)
+        return self._parse_operator(file_name)
 
     @abstractmethod
-    def parse_operator(self, file_name):
+    def _parse_operator(self, file_name) -> VacancyOperator:
         pass
 
     @abstractmethod
