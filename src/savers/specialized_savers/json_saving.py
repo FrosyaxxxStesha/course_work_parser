@@ -12,7 +12,7 @@ class JSONSaving(AbstractSaving):
         return VacancyOperator.from_dict(operator_dict)
 
     def _operator_to_file(self, file_name) -> None:
-        json_string = dumps(self.__operator, indent=2, ensure_ascii=False)
+        json_string = dumps(self.__operator.dict, indent=2, ensure_ascii=False)
 
         with open(file_name, "w") as fp:
             fp.write(json_string)
