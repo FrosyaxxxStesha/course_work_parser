@@ -23,10 +23,6 @@ class VacancyOperator:
         return len(self.__vac_list)
 
     @property
-    def vacancy_list(self):
-        return
-
-    @property
     def dict(self):
         return {
             "title": self.__title,
