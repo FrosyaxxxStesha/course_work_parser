@@ -23,6 +23,14 @@ class VacancyOperator:
         return len(self.__vac_list)
 
     @property
+    def list(self) -> list[Vacancy]:
+        return self.__vac_list
+
+    @list.setter
+    def list(self, vac_list) -> None:
+        self.__vac_list = vac_list
+
+    @property
     def dict(self):
         return {
             "title": self.__title,
@@ -33,6 +41,7 @@ class VacancyOperator:
     @classmethod
     def from_dict(cls, dict_):
         dict_["list_of_vacs"] = list(map(lambda vac_dict: Vacancy(**vac_dict), dict_["list_of_vacs"]))
+        del dict_["count"]
         return cls(**dict_)
 
     @staticmethod
@@ -41,8 +50,12 @@ class VacancyOperator:
             return True
         elif kw in vac.vacancy_dict["url"]:
             return True
-        elif kw in vac.vacancy_dict["requirement"]:
+        if vac.vacancy_dict["requirements"] is None:
+            pass
+        elif kw in vac.vacancy_dict["requirements"]:
             return True
+        if vac.vacancy_dict["responsibility"] is None:
+            pass
         elif kw in vac.vacancy_dict["responsibility"]:
             return True
         return False
@@ -52,7 +65,7 @@ class VacancyOperator:
 
     def filter_by_salary_range(self, min_s: int, max_s: int):
 
-        if max_s > min_s:
+        if max_s < min_s:
             raise ValueError("Максимальная зарплата не должна быть меньше минимальной")
         return list(filter(lambda vac: min_s <= vac.salary <= max_s, self.__vac_list))
 
@@ -63,7 +76,8 @@ class VacancyOperator:
         self.__vac_list.sort(key=lambda vac: vac.salary, reverse=reverse)
 
     def get_top_n(self, n: int) -> None:
-        self.__vac_list = self.sort_by_salary(reverse=True)[:n]
+        self.sort_by_salary(reverse=True)
+        self.__vac_list = self.__vac_list[:n]
 
     def add_vacancy(self, vac: Vacancy) -> None:
         self.__vac_list.append(vac)
