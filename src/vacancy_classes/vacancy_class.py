@@ -1,7 +1,7 @@
 class Vacancy:
-
-    def __init__(self, title, url, salary, requirements, responsibility):
-
+    """Класс для работы с вакансией"""
+    def __init__(self, title: str, url: str, salary: int, requirements: str | None, responsibility: str | None) -> None:
+        """Инициализатор класса"""
         if not isinstance(title, str):
             raise ValueError("Название должно быть строкой")
         if not isinstance(url, str):
@@ -13,56 +13,62 @@ class Vacancy:
         if not (isinstance(responsibility, str) or responsibility is None):
             raise ValueError("Обязанности должны быть строкой")
 
-        self.__title = title
-        self.__url = url
-        self.__salary = salary
-        self.__requirements = requirements
-        self.__responsibility = responsibility
+        self._title = title
+        self._url = url
+        self._salary = salary
+        self._requirements = requirements
+        self._responsibility = responsibility
 
     @property
-    def vacancy_dict(self):
+    def vacancy_dict(self) -> dict:
+        """Возвращает данные объекта в виде словаря"""
         return {
-                "title": self.__title,
-                "url": self.__url,
-                "salary": self.__salary,
-                "requirements": self.__requirements,
-                "responsibility": self.__responsibility
+                "title": self._title,
+                "url": self._url,
+                "salary": self._salary,
+                "requirements": self._requirements,
+                "responsibility": self._responsibility
                 }
 
     @property
-    def salary(self):
-        return self.__salary
+    def salary(self) -> int:
+        """Возвращает данные о зарплате"""
+        return self._salary
 
     @property
-    def url(self):
-        return self.__url
+    def url(self) -> str:
+        """Возвращает ссылку на вакансию"""
+        return self._url
 
     @property
-    def requirements(self):
-        return self.__requirements
+    def requirements(self) -> str | None:
+        """Возвращает требования по Вакансии"""
+        return self._requirements
 
     @property
-    def responsibility(self):
-        return self.__responsibility
+    def responsibility(self) -> str | None:
+        """Возвращает обязанности по вакансии"""
+        return self._responsibility
 
     @property
-    def title(self):
-        return self.__title
+    def title(self) -> str:
+        """Возвращает название вакансии"""
+        return self._title
 
     def __eq__(self, other):
-        return self.__salary == other.__salary
+        return self.salary == other.salary
 
     def __ne__(self, other):
-        return self.__salary != other.__salary
+        return self.salary != other.salary
 
     def __gt__(self, other):
-        return self.__salary > other.__salary
+        return self.salary > other.salary
 
     def __ge__(self, other):
-        return self.__salary >= other.__salary
+        return self.salary >= other.salary
 
     def __lt__(self, other):
-        return self.__salary < other.__salary
+        return self.salary < other.salary
 
     def __le__(self, other):
-        return self.__salary <= other.__salary
+        return self.salary <= other.salary

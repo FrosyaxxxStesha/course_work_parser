@@ -1,0 +1,13 @@
+{
+  "title": "py_list",
+  "count": 1,
+  "list_of_vacs": [
+    {
+      "title": "Back End developer ( Strong Junior/ Middle)",
+      "url": "https://api.hh.ru/vacancies/88539316?host=hh.ru",
+      "salary": 5500000,
+      "requirements": "Знание PHP, Go, ASP, C/C++, <highlighttext>Python</highlighttext>, Ruby, Java,JavaScript, Apache, NGINX, IIS,API.",
+      "responsibility": "Работать над проектами (разработка)."
+    }
+  ]
+}
