@@ -4,17 +4,17 @@ from json import dumps, loads
 
 
 class JSONSaving(AbstractSaving):
-    def __init__(self, file_to_open, file_to_save, title):
-        super().__init__(file_to_open, file_to_save, title)
-
-    def _parse_operator(self, file_name) -> VacancyOperator:
+    """Класс для получения и сохранения вакансий в файл json"""
+    def _parse_operator(self, file_name: str) -> VacancyOperator:
+        """Преобразование из данных файла в объект для работы с вакансиями"""
         with open(file_name, "r") as fp:
             json_string = fp.read()
 
         operator_dict = loads(json_string)
         return VacancyOperator.from_dict(operator_dict)
 
-    def _operator_to_file(self, file_name) -> None:
+    def _operator_to_file(self, file_name: str) -> None:
+        """Преобразование из объекта для работы с вакансиями в и сохранение в файл"""
         json_string = dumps(self._operator.dict, indent=2, ensure_ascii=False)
 
         with open(file_name, "w") as fp:

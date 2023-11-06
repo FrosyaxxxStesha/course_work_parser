@@ -1,7 +1,7 @@
 class Vacancy:
-
-    def __init__(self, title, url, salary, requirements, responsibility):
-
+    """Класс для работы с вакансией"""
+    def __init__(self, title: str, url: str, salary: int, requirements: str | None, responsibility: str | None) -> None:
+        """Инициализатор класса"""
         if not isinstance(title, str):
             raise ValueError("Название должно быть строкой")
         if not isinstance(url, str):
@@ -20,7 +20,8 @@ class Vacancy:
         self.__responsibility = responsibility
 
     @property
-    def vacancy_dict(self):
+    def vacancy_dict(self) -> dict:
+        """Возвращает данные объекта в виде словаря"""
         return {
                 "title": self.__title,
                 "url": self.__url,
@@ -30,23 +31,28 @@ class Vacancy:
                 }
 
     @property
-    def salary(self):
+    def salary(self) -> int:
+        """Возвращает данные о зарплате"""
         return self.__salary
 
     @property
-    def url(self):
+    def url(self) -> str:
+        """Возвращает ссылку на вакансию"""
         return self.__url
 
     @property
-    def requirements(self):
+    def requirements(self) -> str | None:
+        """Возвращает требования по Вакансии"""
         return self.__requirements
 
     @property
-    def responsibility(self):
+    def responsibility(self) -> str | None:
+        """Возвращает обязанности по вакансии"""
         return self.__responsibility
 
     @property
-    def title(self):
+    def title(self) -> str:
+        """Возвращает название вакансии"""
         return self.__title
 
     def __eq__(self, other):
