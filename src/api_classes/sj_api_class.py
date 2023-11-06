@@ -7,10 +7,10 @@ class SuperJobAPI(GeneralAPI):
     _api_url: str = "https://www.superjob.ru/2.0/vacancies"
     _required_headers: dict = {"Host": "api.superjob.ru"}
 
-    def __init__(self, _api_key: str, **headers) -> None:
+    def __init__(self, api_key: str, **headers) -> None:
         """Инициализатор класса SuperJobAPI"""
         super().__init__(**headers)
-        self._headers |= {"X-Api-App-Id": _api_key}
+        self._headers |= {"X-Api-App-Id": api_key}
 
     def _get_main_from_response(self, response: dict) -> list[dict]:
         """Функция для получения списка вакансий из ответа API"""

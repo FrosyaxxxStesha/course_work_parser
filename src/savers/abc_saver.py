@@ -20,9 +20,9 @@ class AbstractSaving(ABC):
         if file_to_save is None:
             file_to_save = file_to_open
 
-        self.__title = title
-        self.__file_to_open = file_to_open
-        self.__file_to_save = file_to_save
+        self._title = title
+        self._file_to_open = file_to_open
+        self._file_to_save = file_to_save
         self._operator = None
 
     def _operator_from_file(self, file_name: str | None, title: str) -> VacancyOperator:
@@ -43,13 +43,13 @@ class AbstractSaving(ABC):
 
     def open(self) -> VacancyOperator:
         """Основная функция для начала работы с вакансиями из файла"""
-        self._operator = self._operator_from_file(self.__file_to_open, self.__title)
+        self._operator = self._operator_from_file(self._file_to_open, self._title)
         return self._operator
 
     def save(self, operator: VacancyOperator) -> None:
         """Основная функция для окончания работы с вакансиями"""
         self._operator = operator
-        self._operator_to_file(self.__file_to_save)
+        self._operator_to_file(self._file_to_save)
         self._operator = None
 
     def __enter__(self) -> VacancyOperator:

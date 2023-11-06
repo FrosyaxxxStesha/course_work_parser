@@ -43,10 +43,10 @@ class GeneralAPI(ABC):
         """Преобразование словаря от API в словарь формата приложения"""
         pass
 
-    def parse_func(self, resp_dict: dict) -> Vacancy:
+    def _parse_func(self, resp_dict: dict) -> Vacancy:
         """Принимает словарь формата приложения, возвращает экземпляр Vacancy"""
         return Vacancy(**self._parse_response_dict(resp_dict))
 
     def get_vacancies(self, **params) -> list[Vacancy]:
         """Общая для получения и парсинга вакансий функция"""
-        return list(map(self.parse_func, self._get_main_from_response(self._connect_to_api(**params))))
+        return list(map(self._parse_func, self._get_main_from_response(self._connect_to_api(**params))))
